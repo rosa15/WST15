@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>addQuestion 4</title>
+	    <link rel='stylesheet' type='text/css' href='styles/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='styles/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='styles/smartphone.css' />
+	
+	<style type="text/css">
+			fieldset {padding: 10px;}
+			body {margin: 10px;}
+	</style>
+	
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+    <script>
+            $(document).ready(function(){
+				//Eposta bermatzeko
+				function epostabai(eposta){
+					if (eposta == ""){
+						alert("Eposta beteta egon behar du");
+						return false;
+					}
+					var epostaondo = new RegExp("[a-zA-Z]{3,}[0-9]{3}\@ikasle\.ehu\.eus" );
+					return epostaondo.test(eposta);
+				}
+				
+				$("#galdetegia").submit(function(){
+					//eposta
+					if (epostabai($("#eposta").val()) == false) {
+						alert("Eposta letrak###@ikasle.ehu.eus izan behar du");
+						return false;
+					}
+					
+					//galdera
+					var galdera = $("#galdera").val().trim();
+					galdera = galdera.replace(/\s+ /gi, " ");
+					if (galdera == "") {
+						alert("Galdera beteta egon behar du");
+						return false;
+					}
+					if (galdera.length < 10){
+						alert("Galderak 9 karaktere baino gehiago izan behar ditu");
+						return false;
+					}
+					
+					//Erantzun zuzena
+					if ($("#zuzena").val().trim() == "") {
+						alert("Erantzun zuzena beteta egon behar du");
+						return false;
+					}
+					
+					//Erantzun okerra1
+					if ($("#okerra1").val().trim() == "") {
+						alert("Erantzun okerra1 beteta egon behar du");
+						return false;
+					}
+					
+					//Erantzun okerra2
+					if ($("#okerra2").val().trim() == "") {
+						alert("Erantzun okerra2 beteta egon behar du");
+						return false;
+					}
+					
+					//Erantzun okerra3
+					if ($("#okerra3").val().trim() == "") {
+						alert("Erantzun okerra3 beteta egon behar du");
+						return false;
+					}
+					
+					//Zailtasuna
+					if ($("#zailtasuna").val().trim() == "") {
+						alert("Zailtasuna beteta egon behar du");
+						return false;
+					}else{
+						//alert("else");
+						if (!/^([0-9])*$/.test($("#zailtasuna").val())) {
+							alert("Zailtasuna zenbaki bat izan behar du");
+							return false;
+						}
+						if (parseInt($("#zailtasuna").val()) < 0 || parseInt($("#zailtasuna").val()) > 5){
+							alert("Zailtasuna 0-5 bitartean egon behar du");
+							return false;
+						}
+					}
+					
+                    //Gaia
+					if ($("#gaia").val().trim() == "") {
+						alert("Gaia beteta egon behar du");
+						return false;
+					}
+
+                });
+			
+			});
+			
+	</script>
+  </head>
+  <body>
+  
+  
+<form id="galdetegia" method="post" action="php/addQuestion.php">
+	<fieldset>
+				Eposta(*)<input id="eposta" name="eposta" type="text" size="25" placeholder="proba000@ikasle.ehu.eus" autofocus /><br><br>
+				Galdera(*)<input id="galdera" name="galdera" type="text" size="50"/><br>
+				Erantzun zuzena(*)<input id="zuzena" name="zuzena" type="text" size="25"/><br>
+				Erantzun okerra 1(*)<input id="okerra1" name="okerra1" type="text" size="25"/><br>
+				Erantzun okerra 2(*)<input id="okerra2" name="okerra2" type="text" size="25"/><br>
+				Erantzun okerra 3(*)<input id="okerra3" name="okerra3" type="text" size="25"/><br><br>
+				
+				Zailtasuna(*)<input id="zailtasuna" name="zailtasuna" type="text" size="25" placeholder="0-5"><br>
+				Gaia(*)<input id="gaia" name="gaia" type="text" size="25"/><br>
+				Irudia: <br><br>
+				
+				<input name="submit" type="submit" id="submit" value="Submit"/>
+				<input name="reset" type="reset" id="reset" value="Reset"/>
+	</fieldset>
+</form><br>
+<a href="layout.php">HOME</a>
+</body>
+</html>
